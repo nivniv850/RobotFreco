@@ -24,4 +24,7 @@ C_UPPER_DEPS :=
 # Every subdirectory with source files must be described here
 SUBDIRS := \
 . \
+MapLoader \
+Map \
+.metadata/.plugins/org.eclipse.cdt.make.core \
 

@@ -7,24 +7,25 @@
 // lior
 // Niv
 #include <libplayerc++/playerc++.h>
+#include "ConfigurationManager.h"
+#include "MapLoader/MapLoader.h"
 
 using namespace PlayerCc;
 
 int main() {
 
-	PlayerClient pc("localhost", 6665);
-	LaserProxy lp(&pc);
-	Position2dProxy pp(&pc);
+	// Init map
+	ConfigurationManager config("/home/colman/Desktop/parameters.txt");
+	Map map = CreateMap(config);
 
-	pp.SetMotorEnable(true);
-	while (true) {
-		pc.Read();
+	// Put robot on map
+	double* robotStartLocation = config.getStartLocation();
+	map.setMapValue(robotStartLocation[0], robotStartLocation[1], ROBOT_CELL);
 
-		if (lp[333] < 0.8)
-			pp.SetSpeed(0.0, 0.3);
-		else
-			pp.SetSpeed(0.8, 0.0);
-	}
+	// Put goal on map
+	double* goalLocation = config.getGoal();
+	map.setMapValue(goalLocation[0], goalLocation[1], GOAL_CELL);
+
 	return 0;
 
 }
