@@ -5,18 +5,21 @@
 
 using namespace std;
 
-Map::Map(char** matrix, int height, int width)
+Map::Map(char** matrix, int height, int width, float resolution)
 {
 	HeightMap = height;
 	WidthMap = width;
 	_mapMatrix = matrix;
+	this->resolution = resolution;
 }
 
-void Map::setMapValue(double x, double y, char value)
+void Map::setMapValueFromRealLocation(double x, double y, char value)
 {
-	int col = getColFromXPos(x);
-	int row = getRowFromYPos(y);
+	setMapValue(getRowFromYPos(y), getColFromXPos(x), value);
+}
 
+void Map::setMapValue(int row, int col, char value)
+{
 	if (_mapMatrix[row][col] != BLOCK_CELL)
 	{
 		_mapMatrix[row][col] = value;
@@ -25,9 +28,9 @@ void Map::setMapValue(double x, double y, char value)
 
 void Map::printMap()
 {
-	for (int i= HeightMap - 1; i >= 0 ; i--)
+	for (int i= 0; i < HeightMap ; i++)
 	{
-		for (int j= WidthMap - 1; j >= 0; j--)
+		for (int j= 0; j < WidthMap; j++)
 		{
 			cout << _mapMatrix[i][j];
 		}
@@ -43,14 +46,30 @@ char Map::getMapValueFromRealLocation(double x, double y)
 	return _mapMatrix[row][col];
 }
 
+char Map::getMapValue(int row, int col)
+{
+	return _mapMatrix[row][col];
+}
+
 int Map::getColFromXPos(double x)
 {
-	return (x / RESOLUTION) + (WidthMap / 2);
+	int r = round((x / resolution) + ((double)WidthMap / 2));
+	return r;
 }
 
 int Map::getRowFromYPos(double y)
 {
-	return (HeightMap / 2) - (y / RESOLUTION);
+	return round(((double)HeightMap / 2) - (y / resolution));
+}
+
+int Map::getMapHeight()
+{
+	return HeightMap;
+}
+
+int Map::getMapWidth()
+{
+	return WidthMap;
 }
 
 

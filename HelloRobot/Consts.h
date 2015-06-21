@@ -6,6 +6,7 @@
 #define BLOCK_CELL '1'
 #define ROBOT_CELL 'R'
 #define GOAL_CELL 'E'
+#define PATH_CELL 'P'
 
 // Parameters keys consts
 #define MAP_PATH_KEY "map:"
