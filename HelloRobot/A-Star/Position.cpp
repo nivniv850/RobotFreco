@@ -7,10 +7,10 @@
 
 #include "Position.h"
 
-Position::Position(int x, int y) {
+Position::Position(int row, int col) {
 	// TODO Auto-generated constructor stub
-	this->x = x;
-	this->y = y;
+	this->row = row;
+	this->col = col;
 }
 
 Position::~Position() {

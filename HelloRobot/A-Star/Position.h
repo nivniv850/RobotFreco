@@ -10,9 +10,9 @@
 
 class Position {
 public:
-	Position(int x, int y);
+	Position(int row, int col);
 	virtual ~Position();
-	int x, y;
+	int row, col;
 };
 
 #endif /* POSITION_H_ */

@@ -158,6 +158,12 @@ vector<Position*> AStar::findPath(int rowStart, int colStart, int rowEnd, int co
         n ++;
     }
 
-    return path;
+    vector<Position*> fromStart;
+    for (int i = path.size() - 1; i >= 0; i--)
+    {
+    	fromStart.push_back(path[i]);
+    }
+
+    return fromStart;
 }
 

@@ -73,11 +73,7 @@ int Point::getGScore(Point *p)
 
 int Point::getHScore(Point *p)
 {
-	int nivx = p->x;
-	int rr = myAbs(nivx - x);
-	int zz = myAbs(p->y - y);
-
-	return (rr + zz) * 10;
+	return (myAbs(p->x - x) + myAbs(p->y - y)) * 10;
 }
 
 int Point::myAbs(int x)

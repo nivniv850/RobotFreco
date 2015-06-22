@@ -9,7 +9,7 @@ class Point {
 public:
 	Point();
 	Point(int x, int y, bool w);
-	int x, y, g, h, f;
+	int y, x, g, h, f;
 	bool closed, opened, walkable;
 	Point* parent;
 	Position* getPosition();
